@@ -5,6 +5,8 @@ from PIL import ImageTk,Image
 from data_entry import *
 from menu_viewer import *
 from m_selector import *
+import time
+
 
 root = Tk()
 root.title("Meal selector")
@@ -24,7 +26,7 @@ headingFrame1.place(relx=0.2,rely=0.1,relwidth=0.6,relheight=0.16)
 headingLabel = Label(headingFrame1, text="Welcome to \n Meal Selector", bg='black', fg='white', font=('Courier',18))
 headingLabel.place(relx=0,rely=0, relwidth=1, relheight=1)
 
-btn1 = Button(root,text="Add Meals",bg='black', fg='green')
+btn1 = Button(root,text="Add Meals",bg='black', fg='green', command=addMeal)
 btn1.place(relx=0.28,rely=0.4, relwidth=0.45,relheight=0.1)
     
 btn2 = Button(root,text="Delete Meal",bg='black', fg='red')
