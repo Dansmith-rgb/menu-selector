@@ -53,7 +53,7 @@ def addMeal():
     mealInfo4 = Entry(labelFrame)
     mealInfo4.place(relx=0.3,rely=0.65, relwidth=0.62, relheight=0.08)
         
-    #Submit Button
+    # Submit Button
     SubmitBtn = Button(root,text="SUBMIT",bg='#d1ccc0', fg='black', command=addMealDB)
     SubmitBtn.place(relx=0.28,rely=0.9, relwidth=0.18,relheight=0.08)
     
