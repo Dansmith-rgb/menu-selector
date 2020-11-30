@@ -78,13 +78,13 @@ def addMealDB():
 
     if category == "meat":
         try:
-            c.execute("INSERT INTO meat VALUES (?,?,?,?)", (nom,category,ingredients,comments))
+            c.execute("INSERT INTO meat VALUES (?,?,?,?)", (category,nom,ingredients,comments))
             messagebox.showinfo('Success',"Meal added successfully")
         except:
             messagebox.showinfo("Error","Can't add data into Database")
     elif category == "vegetarian":
         try:
-            c.execute("INSERT INTO vegetarian VALUES (?,?,?,?)", (nom,category,ingredients,comments))
+            c.execute("INSERT INTO vegetarian VALUES (?,?,?,?)", (category,nom,ingredients,comments))
             messagebox.showinfo('Success',"Meal added successfully")
         except:
             messagebox.showinfo("Error","Can't add data into Database")

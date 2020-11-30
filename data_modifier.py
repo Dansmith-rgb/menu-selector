@@ -100,7 +100,7 @@ def updateMealDB():
                     category = ? ,
                     main_ingredients = ? ,
                     other_comments = ?
-                    WHERE meal_name = ?""", (nom,category,ingredients,comments,oldnom))
+                    WHERE meal_name = ?""", (category,nom,ingredients,comments,oldnom))
             messagebox.showinfo("Success",'Successfully updated your meal')
         except Exception as e:
             messagebox.showinfo('Error',"Make sure what your trying to change exists.")
@@ -111,7 +111,7 @@ def updateMealDB():
                     category = ? ,
                     main_ingredients = ? ,
                     other_comments = ?
-                    WHERE meal_name = ?""", (nom,category,ingredients,comments,oldnom))
+                    WHERE meal_name = ?""", (category,nom,ingredients,comments,oldnom))
             messagebox.showinfo("Success",'Successfully updated your meal')
         except Exception as e:
             messagebox.showinfo('Error',"Make sure what your trying to change exists.")

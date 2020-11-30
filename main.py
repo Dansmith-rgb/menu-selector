@@ -6,6 +6,7 @@ from data_entry import *
 from menu_viewer import *
 from m_selector import *
 from data_deletion import *
+from data_modifier import *
 
 
 root = Tk()
@@ -32,13 +33,13 @@ btn1.place(relx=0.28,rely=0.4, relwidth=0.45,relheight=0.1)
 btn2 = Button(root,text="Delete Meal",bg='black', fg='red', command=deleteMeal)
 btn2.place(relx=0.28,rely=0.5, relwidth=0.45,relheight=0.1)
     
-btn3 = Button(root,text="View Meals",bg='black', fg='white')
+btn3 = Button(root,text="View Meals",bg='black', fg='white', command=viewMeals)
 btn3.place(relx=0.28,rely=0.6, relwidth=0.45,relheight=0.1)
     
 btn4 = Button(root,text="Food plan for the week", bg='black', fg='purple')
 btn4.place(relx=0.28,rely=0.7, relwidth=0.45,relheight=0.1)
     
-btn5 = Button(root,text="Edit Meal",bg='black', fg='orange')
+btn5 = Button(root,text="Edit Meal",bg='black', fg='orange', command=updateMeal)
 btn5.place(relx=0.28,rely=0.8, relwidth=0.45,relheight=0.1)
 
 root.mainloop()
