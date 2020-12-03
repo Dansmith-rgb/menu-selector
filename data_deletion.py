@@ -61,12 +61,14 @@ def deleteMealDB():
             c.execute("DELETE FROM meat WHERE meal_name = (?)", (nom,))
             messagebox.showinfo('Success',"Successfully deleted meal")
         except Exception as e:
+            print(str(e))
             messagebox.showinfo('Error',"Double check your spelling and check it exists")
     elif category == "vegetarian":
         try:
             c.execute("DELETE FROM vegetarian WHERE meal_name = (?)", (nom,))
             messagebox.showinfo('Success',"Successfully deleted meal")
-        except:
+        except Exception as e:
+            print(str(e))
             messagebox.showinfo('Error',"Double check your spelling and check it exists")
     else:
         messagebox.showinfo('Error',"Double check your speeling and you typed everything in correctly")

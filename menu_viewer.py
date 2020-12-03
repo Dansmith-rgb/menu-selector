@@ -22,7 +22,7 @@ def viewMeals():
     labelFrame.place(relx=0.1,rely=0.4,relwidth=0.8,relheight=0.4)
     y = 0.25
 
-    Label(labelFrame, text="%-20s%-30s%-30s%-20s"%('Cat','Meal','Ingredients','Comments'),
+    Label(labelFrame, text="%-20s%-30s%-30s%-20s"%('Meal','Cat','Ingredients','Comments'),
     bg='black',fg='white').place(relx=0.07,rely=0.1)
 
     Label(labelFrame, text = "------------------------------------------------------------------------------------------",
@@ -38,7 +38,7 @@ def viewMeals():
         items = c.fetchall()
 
         for item in items:
-            Label(labelFrame,text="%-20s%-30s%-30s%-20s"%(item[1][:4],item[0][:10],item[2][:10],item[3][:20]) ,bg='black', fg='white').place(relx=0.07,rely=y)
+            Label(labelFrame,text="%-20s%-30s%-30s%-20s"%(item[0][:10],item[1][:4],item[2][:10],item[3][:20]) ,bg='black', fg='white').place(relx=0.07,rely=y)
             y += 0.1
         
         conn.commit()
@@ -48,7 +48,7 @@ def viewMeals():
         items2 = c.fetchall()
 
         for item2 in items2:
-            Label(labelFrame,text="%-20s%-30s%-30s%-20s"%(item2[1][:4],item2[0][:10],item2[2][:10],item2[3][:20]) ,bg='black', fg='white').place(relx=0.07,rely=y)
+            Label(labelFrame,text="%-20s%-30s%-30s%-20s"%(item2[0][:10],item2[1][:10],item2[2][:10],item2[3][:20]) ,bg='black', fg='white').place(relx=0.07,rely=y)
             y += 0.1
         
         conn.commit()
