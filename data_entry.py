@@ -73,6 +73,8 @@ def addMealDB():
     category = mealInfo1.get()
     category.lower()
     nom = mealInfo2.get()
+    if len(nom) >= 10:
+         nom = nom[:9] + "\n" + nom[9:]
     ingredients = mealInfo3.get()
     comments = mealInfo4.get()
     print(nom)
