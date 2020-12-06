@@ -1,3 +1,4 @@
+# Importing modules
 import sqlite3
 from tkinter import *
 from tkinter import messagebox
@@ -5,17 +6,20 @@ from PIL import ImageTk,Image
 
 def deleteMeal():
 
-    global mealInfo1, mealInfo2
+    # Global variables
+    global mealInfo1, mealInfo2, root
+    # Making the main window
     root = Tk()
     root.title("Menu selector")
-    #root.minsize(width=400,height=400)
     root.geometry("640x800")
     root.resizable(False, False)
     
+    # Creating canvas
     Canvas1 = Canvas(root)
     Canvas1.config(bg="#ff6e40")
     Canvas1.pack(expand=True,fill=BOTH)
         
+    # Creating frames and labels
     headingFrame1 = Frame(root,bg="#FFBB00",bd=5)
     headingFrame1.place(relx=0.25,rely=0.1,relwidth=0.5,relheight=0.13)
     headingLabel = Label(headingFrame1, text="Delete Meals", bg='black', fg='white', font=('Courier',15))
@@ -52,12 +56,14 @@ def deleteMealDB():
     conn = sqlite3.connect('meals.db')
     c = conn.cursor()
 
+    # Getting the user input from the text fields.
     category = mealInfo1.get()
     category.lower()
     nom = mealInfo2.get()
 
     if category == "meat":
         try:
+            # Deleting the record from table
             c.execute("DELETE FROM meat WHERE meal_name = (?)", (nom,))
             messagebox.showinfo('Success',"Successfully deleted meal")
         except Exception as e:
@@ -65,6 +71,7 @@ def deleteMealDB():
             messagebox.showinfo('Error',"Double check your spelling and check it exists")
     elif category == "vegetarian":
         try:
+            # Deleting the record from table
             c.execute("DELETE FROM vegetarian WHERE meal_name = (?)", (nom,))
             messagebox.showinfo('Success',"Successfully deleted meal")
         except Exception as e:
@@ -76,3 +83,5 @@ def deleteMealDB():
     # Commit changes and close connection to db
     conn.commit()
     conn.close()
+    # Destroy the window so you go back to the home window.
+    root.destroy()

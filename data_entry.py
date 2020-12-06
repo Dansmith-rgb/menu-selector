@@ -1,3 +1,4 @@
+# Importing modules
 import sqlite3
 from tkinter import *
 from tkinter import messagebox
@@ -7,7 +8,9 @@ from PIL import ImageTk,Image
 
 def addMeal(): 
     
-    global mealInfo1, mealInfo2, mealInfo3, mealInfo4, Canvas1
+    # Declaring global variables
+    global mealInfo1, mealInfo2, mealInfo3, mealInfo4, Canvas1, root
+    # Making main window
     root = Tk()
     root.title("Menu selector")
     #root.minsize(width=400,height=400)
@@ -70,9 +73,11 @@ def addMealDB():
     conn = sqlite3.connect('meals.db')
     c = conn.cursor()
 
+    # Getting user input from text fields
     category = mealInfo1.get()
     category.lower()
     nom = mealInfo2.get()
+    # If the name is 10 characters or longer then put a new line in that name
     if len(nom) >= 10:
          nom = nom[:9] + "\n" + nom[9:]
     ingredients = mealInfo3.get()
@@ -81,18 +86,24 @@ def addMealDB():
 
     if category == "meat":
         try:
+            # Adding new record into table
             c.execute("INSERT INTO meat VALUES (?,?,?,?)", (nom,category,ingredients,comments))
+            # Show message box
             messagebox.showinfo('Success',"Meal added successfully")
         except:
+            # Show message box
             messagebox.showinfo("Error","Can't add data into Database")
     elif category == "vegetarian":
         try:
+            # Adding new record into table
             c.execute("INSERT INTO vegetarian VALUES (?,?,?,?)", (nom,category,ingredients,comments))
-            print(nom)
+            # Show message box
             messagebox.showinfo('Success',"Meal added successfully")
         except:
+            # Show message box
             messagebox.showinfo("Error","Can't add data into Database")
     else:
+        # Show message box
         messagebox.showinfo("Error","Maybe there is a spelling mistake.")
 
     
@@ -100,5 +111,7 @@ def addMealDB():
     conn.commit()
     # Closing the connection with the db
     conn.close()
+    # Destroy the window so you go back to the home window.
+    root.destroy()
 
 

@@ -1,20 +1,24 @@
+# Importing modules
 import sqlite3
 from tkinter import *
 from tkinter import messagebox
 from PIL import ImageTk,Image
 
 def updateMeal():
-    global oldmealInfo1, oldmealInfo2, mealInfo1, mealInfo2, mealInfo3, mealInfo4
+    # Declaring global variables
+    global oldmealInfo1, oldmealInfo2, mealInfo1, mealInfo2, mealInfo3, mealInfo4, root
+    # Making main window
     root = Tk()
     root.title("Menu selector")
-    #root.minsize(width=400,height=400)
     root.geometry("640x800")
     root.resizable(False, False)
     
+    # Creating canvas
     Canvas1 = Canvas(root)
     Canvas1.config(bg="#ff6e40")
     Canvas1.pack(expand=True,fill=BOTH)
-        
+    
+    # Creating frames and labels
     headingFrame1 = Frame(root,bg="#FFBB00",bd=5)
     headingFrame1.place(relx=0.25,rely=0.02,relwidth=0.5,relheight=0.13)
     headingLabel = Label(headingFrame1, text="Modify Meals", bg='black', fg='white', font=('Courier',15))
@@ -86,6 +90,7 @@ def updateMealDB():
     conn = sqlite3.connect('meals.db')
     c = conn.cursor()
 
+    # Getting user input from text fields.
     oldcategory = oldmealInfo1.get()
     oldcategory.lower()
     oldnom = oldmealInfo2.get()
@@ -96,28 +101,38 @@ def updateMealDB():
 
     if oldcategory == "meat":
         try:
+            # Updating the record
             c.execute("""UPDATE meat SET meal_name = ? ,
                     category = ? ,
                     main_ingredients = ? ,
                     other_comments = ?
                     WHERE meal_name = ?""", (category,nom,ingredients,comments,oldnom))
+            # Show message box
             messagebox.showinfo("Success",'Successfully updated your meal')
         except Exception as e:
+            # Show message box
             messagebox.showinfo('Error',"Make sure what your trying to change exists.")
             print(str(e))
     elif oldcategory == "vegetarian":
         try:
+            # Updating the record
             c.execute("""UPDATE vegetarian SET meal_name = ? ,
                     category = ? ,
                     main_ingredients = ? ,
                     other_comments = ?
                     WHERE meal_name = ?""", (category,nom,ingredients,comments,oldnom))
+            # Show message box
             messagebox.showinfo("Success",'Successfully updated your meal')
         except Exception as e:
+            # show message box
             messagebox.showinfo('Error',"Make sure what your trying to change exists.")
             print(str(e))
     else:
+        # Show message box
         messagebox.showinfo("Error","Make sure what your trying to change exists.")
 
+    # Commiting changes to DB and closing the connection
     conn.commit()
     conn.close()
+    # Destroy the window so you go back to the home window.
+    root.destroy()

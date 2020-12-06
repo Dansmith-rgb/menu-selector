@@ -1,3 +1,4 @@
+# Importing modules
 import smtplib, ssl
 import m_selector 
 from email.mime.multipart import MIMEMultipart
@@ -9,6 +10,7 @@ from fpdf import FPDF
 import sqlite3
 import random
 
+# Setting some variables
 monday1 = False
 tuesday1 = False
 wedensday1 = True
@@ -17,10 +19,10 @@ friday1 = True
 saturday1 = False
 sunday1 = True
 
+# Made a class for pdf maker.
 class PDF1(FPDF):
+    # Drawing the lines on the pdf
     def lines(self):
-        pdf_w=210
-        pdf_h=297
         self.set_line_width(0.0)
         self.set_fill_color(32.0, 47.0, 250.0)
         self.rect(5.0, 5.0, 200.0,287.0,'DF')
@@ -34,12 +36,14 @@ class PDF1(FPDF):
         self.rect(120,100, 25,25)
         self.rect(145,100, 25,25)
         self.rect(170,100, 25,25)
+    # Making the title for the pdf
     def titles(self):
         txt = "Your Meal Plan"
         self.set_font('Arial', 'B', 16)
         self.set_xy(0.0,0.0)
         self.set_text_color(220, 50, 50)
         self.cell(w=210.0, h=40.0,align = 'C', txt=txt, border=0)
+    # Writing the text so you can see what meals you have on what days.
     def texts(self,meals):
         x=20.0
         days = ["Monday", "Tuesday", "Wedensday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -60,6 +64,7 @@ class PDF1(FPDF):
 
 # PDF object
 pdf = PDF1()
+# Add page to pdf.
 pdf.add_page()
 
 def queryDB():
@@ -67,17 +72,20 @@ def queryDB():
     conn = sqlite3.connect('meals.db')
     c = conn.cursor()
 
+    # Declaring global vaiables
     global meals
 
+    # Defining some lists
     meals = []
     previous = []
 
     if monday1:
         try:
+            # Getting all the meal names from the table
             mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM vegetarian")]
-            #print(mealm)
             
             while True:
+                # Get random choice and add it to the meals list if it isn't already in there.
                 rand = random.choice(mealm)
                 if rand in previous:
                     print("hello")
@@ -86,49 +94,18 @@ def queryDB():
                     previous.append(rand)
                     meals.append(rand)
                     break
-        except Exception as e:
-            print(str(e))
-    else:
-        try:
-            mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM meat")]
-            #print(mealm)
-            
-            while True:
-                rand = random.choice(mealm)
-                if rand in previous:
-                    print("hello")
-                    pass
-                else:
-                    previous.append(rand)
-                    meals.append(rand)
-                    break
-        except Exception as e:
-            print(str(e))
-
-    if tuesday1:
-        try:
-            mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM vegetarian")]
-            #items = c.fetchall()
-            #print(jobs)
-            
-            while True:
-                rand = random.choice(mealm)
-                if rand in previous:
-                    print("hello")
-                    pass
-                else:
-                    previous.append(rand)
-                    meals.append(rand)
-                    break
+            # Commit changes
             conn.commit()
         except Exception as e:
             print(str(e))
     else:
         try:
+            # Getting all the meal names from the table
             mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM meat")]
-            #items = c.fetchall()
-            #print(jobs)
+            #print(mealm)
+            
             while True:
+                # Get random choice and add it to the meals list if it isn't already in there.
                 rand = random.choice(mealm)
                 if rand in previous:
                     print("hello")
@@ -137,17 +114,57 @@ def queryDB():
                     previous.append(rand)
                     meals.append(rand)
                     break
+            # Commit changes
+            conn.commit()
+        except Exception as e:
+            print(str(e))
+
+    if tuesday1:
+        try:
+            # Getting all the meal names from the table
+            mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM vegetarian")]
+            
+            while True:
+                # Get random choice and add it to the meals list if it isn't already in there.
+                rand = random.choice(mealm)
+                if rand in previous:
+                    print("hello")
+                    pass
+                else:
+                    previous.append(rand)
+                    meals.append(rand)
+                    break
+            # Commit changes
+            conn.commit()
+        except Exception as e:
+            print(str(e))
+    else:
+        try:
+            # Getting all the meal names from the table
+            mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM meat")]
+    
+            while True:
+                # Get random choice and add it to the meals list if it isn't already in there.
+                rand = random.choice(mealm)
+                if rand in previous:
+                    print("hello")
+                    pass
+                else:
+                    previous.append(rand)
+                    meals.append(rand)
+                    break
+            # Commit changes
             conn.commit()
         except Exception as e:
             print(str(e))
 
     if wedensday1:
         try:
+            # Getting all the meal names from the table
             mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM vegetarian")]
-            #items = c.fetchall()
-            #print(jobs)
-            print(mealm)
+            
             while True:
+                # Get random choice and add it to the meals list if it isn't already in there.
                 rand = random.choice(mealm)
                 if rand in previous:
                     print("hello")
@@ -156,15 +173,17 @@ def queryDB():
                     previous.append(rand)
                     meals.append(rand)
                     break
+            # Commit changes
             conn.commit()
         except Exception as e:
             print(str(e))
     else:
         try:
+            # Getting all the meal names from the table
             mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM meat")]
-            #items = c.fetchall()
-            #print(jobs)
+            
             while True:
+                # Get random choice and add it to the meals list if it isn't already in there.
                 rand = random.choice(mealm)
                 if rand in previous:
                     print("hello")
@@ -173,16 +192,18 @@ def queryDB():
                     previous.append(rand)
                     meals.append(rand)
                     break
+            # Commit changes
             conn.commit()
         except Exception as e:
             print(str(e))
 
     if thursday1:
         try:
+            # Getting all the meal names from the table
             mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM vegetarian")]
-            #items = c.fetchall()
-            #print(jobs)
+            
             while True:
+                # Get random choice and add it to the meals list if it isn't already in there.
                 rand = random.choice(mealm)
                 if rand in previous:
                     print("hello")
@@ -191,15 +212,17 @@ def queryDB():
                     previous.append(rand)
                     meals.append(rand)
                     break
+            # Commit changes
             conn.commit()
         except Exception as e:
             print(str(e))
     else:
         try:
+            # Getting all the meal names from the table
             mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM meat")]
-            #items = c.fetchall()
-            #print(jobs)
+            
             while True:
+                # Get random choice and add it to the meals list if it isn't already in there.
                 rand = random.choice(mealm)
                 if rand in previous:
                     print("hello")
@@ -208,16 +231,18 @@ def queryDB():
                     previous.append(rand)
                     meals.append(rand)
                     break
+            # Commit changes
             conn.commit()
         except Exception as e:
             print(str(e))
 
     if friday1:
         try:
+            # Getting all the meal names from the table
             mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM vegetarian")]
-            #items = c.fetchall()
-            #print(jobs)
+            
             while True:
+                # Get random choice and add it to the meals list if it isn't already in there.
                 rand = random.choice(mealm)
                 if rand in previous:
                     print("hello")
@@ -226,15 +251,17 @@ def queryDB():
                     previous.append(rand)
                     meals.append(rand)
                     break
+            # Commit changes
             conn.commit()
         except Exception as e:
             print(str(e))
     else:
         try:
+            # Getting all the meal names from the table
             mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM meat")]
-            #items = c.fetchall()
-            #print(jobs)
+            
             while True:
+                # Get random choice and add it to the meals list if it isn't already in there.
                 rand = random.choice(mealm)
                 if rand in previous:
                     print("hello")
@@ -243,16 +270,18 @@ def queryDB():
                     previous.append(rand)
                     meals.append(rand)
                     break
+            # Commit changes
             conn.commit()
         except Exception as e:
             print(str(e))
 
     if saturday1:
         try:
+            # Getting all the meal names from the table
             mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM vegetarian")]
-            #items = c.fetchall()
-            #print(jobs)
+            
             while True:
+                # Get random choice and add it to the meals list if it isn't already in there.
                 rand = random.choice(mealm)
                 if rand in previous:
                     print("hello")
@@ -261,15 +290,17 @@ def queryDB():
                     previous.append(rand)
                     meals.append(rand)
                     break
+            # Commit changes
             conn.commit()
         except Exception as e:
             print(str(e))
     else:
         try:
+            # Getting all the meal names from the table
             mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM meat")]
-            #items = c.fetchall()
-            #print(jobs)
+            
             while True:
+                # Get random choice and add it to the meals list if it isn't already in there.
                 rand = random.choice(mealm)
                 if rand in previous:
                     print("hello")
@@ -278,14 +309,17 @@ def queryDB():
                     previous.append(rand)
                     meals.append(rand)
                     break
+            # Commit changes
+            conn.commit()
         except Exception as e:
             print(str(e))
     if sunday1:
         try:
+            # Getting all the meal names from the table
             mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM vegetarian")]
-            #items = c.fetchall()
-            #print(jobs)
+            
             while True:
+                # Get random choice and add it to the meals list if it isn't already in there.
                 rand = random.choice(mealm)
                 if rand in previous:
                     print("hello")
@@ -294,15 +328,17 @@ def queryDB():
                     previous.append(rand)
                     meals.append(rand)
                     break
+            # Commit changes
             conn.commit()
         except Exception as e:
             print(str(e))
     else:
         try:
+            # Getting all the meal names from the table
             mealm = [meal_name[0] for meal_name in c.execute("SELECT meal_name FROM meat")]
-            #items = c.fetchall()
-            #print(jobs)
+            
             while True:
+                # Get random choice and add it to the meals list if it isn't already in there.
                 rand = random.choice(mealm)
                 if rand in previous:
                     print("hello")
@@ -311,15 +347,18 @@ def queryDB():
                     previous.append(rand)
                     meals.append(rand)
                     break
+            # Commit changes
             conn.commit()
         except Exception as e:
             print(str(e))
 
+    # Close connection to DB
     conn.close()
+    # return the meals list
     return meals
 
 
-
+# Saving the pdf.
 def savepd():
     pdf.lines()
     pdf.titles()
@@ -327,24 +366,30 @@ def savepd():
     print(meals)
     pdf.output('Menu_selection.pdf','F')
 
+# Loading the enviroment variables which have passwords and usernames in
 load_dotenv(".env")
 
 SENDER = os.environ.get("GMAIL_USER")
 PASSWORD = os.environ.get("GMAIL_PASSWORD")
 RECIEVER = os.environ.get("GMAIL_RECIEVER")
-print(SENDER)
-print(PASSWORD)
 
+# Making base class for a MIME
 message = MIMEMultipart()
+# Craeting name for pdf
 filename = "Meal_selection.pdf"
 
 part = MIMEBase('application', "octet-stream")
+# Read in file
 part.set_payload(open("Menu_selection.pdf", "rb").read())
+# Attach pdf to email
 encoders.encode_base64(part)
 part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
 
 message.attach(part)
 
+# Get port and domain name for email service you use
 s = smtplib.SMTP_SSL(host='smtp.gmail.com', port=465)
+# Login with your uername and password for that accountant
 s.login(SENDER, PASSWORD)
+# Send the email.
 s.sendmail(SENDER, RECIEVER, message.as_string())

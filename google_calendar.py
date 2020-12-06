@@ -1,3 +1,4 @@
+# Import modules
 from __future__ import print_function
 from datetime import datetime
 from datetime import *
@@ -47,13 +48,13 @@ def main():
     service = build('calendar', 'v3', credentials=creds)
 
     # Call the Calendar API
-    # creates one hour event tomorrow 10 AM IST
-    #service = get_calendar_service()
+    # creates a event everyday for dinner for the next week
 
     
     length = 0
  
     print(meals)
+    # Get all the timings right and use a for loopt to create a event each day
     for i in meals: 
         d = datetime.now().date()
         tomorrow = datetime(d.year, d.month, d.day, 17)
@@ -84,6 +85,7 @@ def main():
 
         print("created event")
         print(event_result['id'])
+        # Sleep so it doesn't overwhelm the API
         time.sleep(10)
 if __name__ == '__main__':
    main()
