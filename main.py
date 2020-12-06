@@ -57,6 +57,6 @@ btn5.place(relx=0.52,rely=0.4, relwidth=0.2,relheight=0.06)
 btn6 = Button(root,text="Meal Ideas",bg='black', fg='blue', command=mealIdeas)
 btn6.place(relx=0.52,rely=0.6, relwidth=0.2,relheight=0.06)
 
-
 # Running the main loop
 root.mainloop()
+
