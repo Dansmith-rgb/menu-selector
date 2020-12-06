@@ -15,7 +15,7 @@ def updateMeal():
     
     # Creating canvas
     Canvas1 = Canvas(root)
-    Canvas1.config(bg="#ff6e40")
+    Canvas1.config(bg="orange")
     Canvas1.pack(expand=True,fill=BOTH)
     
     # Creating frames and labels

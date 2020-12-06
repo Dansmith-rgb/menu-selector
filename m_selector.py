@@ -27,7 +27,7 @@ def mealSelector():
 
     # Create a new canvas
     Canvas1 = Canvas(root)
-    Canvas1.config(bg="#ff6e40")
+    Canvas1.config(bg="purple")
     Canvas1.pack(expand=True,fill=BOTH)
     
     # Create some new frames and labels
@@ -452,7 +452,7 @@ def mealSelectorDB():
 
     # Creating new canvas
     Canvas1 = Canvas(root1)
-    Canvas1.config(bg="#ff6e40")
+    Canvas1.config(bg="purple")
     Canvas1.pack(expand=True,fill=BOTH)
         
     # Create new labels and frames

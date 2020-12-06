@@ -39,7 +39,7 @@ def mealIdeas():
     
     # Create canvas
     Canvas1 = Canvas(root)
-    Canvas1.config(bg="#ff6e40")
+    Canvas1.config(bg="blue")
     Canvas1.pack(expand=True,fill=BOTH)
     
     # Create frames and labels

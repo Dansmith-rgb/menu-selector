@@ -18,7 +18,7 @@ def addMeal():
     root.resizable(False, False)
     
     Canvas1 = Canvas(root)
-    Canvas1.config(bg="#ff6e40")
+    Canvas1.config(bg="green")
     Canvas1.pack(expand=True,fill=BOTH)
         
     headingFrame1 = Frame(root,bg="#FFBB00",bd=5)
