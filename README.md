@@ -60,5 +60,5 @@ Add a date to the database each time something is entered.
 
 Delete record from specified table
 
-Edit reocrd from specified table.
+Edit record from specified table.
 
